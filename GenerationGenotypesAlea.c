@@ -31,7 +31,7 @@ int main(int argc, char* argv[]){
     // Le fichier est accessible
     printf("Fichier ouvert\n");
     for(cpt_ind=0;cpt_ind<nb_individus;cpt_ind++){
-      fprintf(GenotypesAleatoires, "/ind %d geno    \t", cpt_ind);
+      fprintf(GenotypesAleatoires, "/ind %d geno\t    ", cpt_ind);
       //Fonction Génération Aléatoire de géno
       generationAleatoireGeno(taille_genotypes, nb_max_loci_ambi, GenotypesAleatoires, cpt_ind);
     }

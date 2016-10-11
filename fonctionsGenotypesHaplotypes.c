@@ -4,7 +4,7 @@
 #include "fonctionsGenotypesHaplotypes.h"
 
 //************************************************************************
-// Procédure de génération aléatoire des génotypes et des haplotypes hello
+// Procédure de génération aléatoire des génotypes et des haplotypes
 //************************************************************************
 void generationAleatoireGeno(int taille_genotypes, int nb_max_loci_ambi, FILE* GenotypesAleatoires, int cpt_ind){
   int i, cpt_loci_ambi=0;
@@ -37,7 +37,7 @@ void generationAleatoireGeno(int taille_genotypes, int nb_max_loci_ambi, FILE* G
       if(rand()%2==0){
         haplo1[i]=1;
         haplo2[i]=0;
-      } else if(rand()%2==1){
+      } else {
         haplo1[i]=0;
         haplo2[i]=1;
       }
