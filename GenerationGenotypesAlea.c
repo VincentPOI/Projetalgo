@@ -3,13 +3,18 @@
 #include <time.h>
 #include "fonctionsGenotypesHaplotypes.h"
 
-
+/*
+gcc -c fonctionsGenotypesHaplotypes.c
+gcc GenerationGenotypesAlea.c -o GenerationGenotypesAlea fonctionsGenotypesHaplotypes.o -Wall
+./GenerationGenotypesAlea
+*/
 int main(int argc, char* argv[]){
   // Initialisation des variables, pour le cas sans paramètres
   int nb_individus=10, taille_genotypes=10, nb_max_loci_ambi=3, cpt_ind;
   //char* genoAlea=NULL;
   FILE* GenotypesAleatoires = NULL;
-  printf("Test lancement programme\n");
+  FILE* GenoHaploAleatoires = NULL;
+  printf("Lancement du programme...\n");
 
   // Tests pour l'initialisation des variables avec paramètres
   if(argc==2){
@@ -24,24 +29,31 @@ int main(int argc, char* argv[]){
   } else if(argc>4) {
     printf("Merci de vérifier le nombre d'arguments rentrés.\n");
   }
-  printf("Ouverture fichier\n");
+  printf("Ouverture des fichiers...\n");
   GenotypesAleatoires = fopen("GenotypesAleatoires.txt", "w+");
-  if (GenotypesAleatoires != NULL) {
+  GenoHaploAleatoires = fopen("GenoHaploAleatoires.txt", "w+");
+  if (GenotypesAleatoires != NULL && GenoHaploAleatoires != NULL) {
     srand(time(NULL));
-    // Le fichier est accessible
-    printf("Fichier ouvert\n");
+    // Les fichiers sont accessibles
+    printf("Fichiers ouverts.\n");
     for(cpt_ind=0;cpt_ind<nb_individus;cpt_ind++){
-      fprintf(GenotypesAleatoires, "/ind %d geno\t    ", cpt_ind);
-      //Fonction Génération Aléatoire de géno
-      generationAleatoireGeno(taille_genotypes, nb_max_loci_ambi, GenotypesAleatoires, cpt_ind);
+      //Fonction de génération aléatoire de génotypes et d'haplotypes
+      generationAleatoireGeno(taille_genotypes, nb_max_loci_ambi, GenotypesAleatoires, GenoHaploAleatoires, cpt_ind);
     }
-    printf("Fermeture fichier\n");
+    printf("Fermeture des fichiers...\n");
     fclose(GenotypesAleatoires);
-    printf("Fichier fermé\n");
+    fclose(GenoHaploAleatoires);
+    printf("Fichiers fermés.\n");
   }
   else {
-    // Impossible d'ouvrir le fichier
-    printf("Impossible d'ouvrir le fichier GenotypesAleatoires.txt\n");
+    if(GenotypesAleatoires == NULL){
+      // Impossible d'ouvrir le fichier GenotypesAleatoires
+      printf("Impossible d'ouvrir le fichier GenotypesAleatoires.txt\n");
+    }
+    else if(GenoHaploAleatoires == NULL){
+      // Impossible d'ouvrir le fichier GenotypesAleatoires
+      printf("Impossible d'ouvrir le fichier GenoHaploAleatoires.txt\n");
+    }
   }
   return 0;
 }
