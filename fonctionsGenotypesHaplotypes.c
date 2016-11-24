@@ -4,10 +4,10 @@
 #include "fonctionsGenotypesHaplotypes.h"
 
 //************************************************************************
-// Procédure de génération aléatoire des génotypes et des haplotypes hello
+// Procédure de génération aléatoire des génotypes et des haplotypes
 //************************************************************************
 void generationAleatoireGeno(int taille_genotypes, int nb_max_loci_ambi, FILE* GenotypesAleatoires, FILE* GenoHaploAleatoires, int cpt_ind){
-  int i, cpt_loci_ambi=0, /*cpt_loci_ambi_prec=-1, cpt_distrib_normale=1*/;
+  int i, cpt_loci_ambi=0 /*cpt_loci_ambi_prec=-1, cpt_distrib_normale=1*/;
   int* genoAlea=malloc(taille_genotypes*sizeof(int)+1);
   int* haplo1=malloc(taille_genotypes*sizeof(int)+1);
   int* haplo2=malloc(taille_genotypes*sizeof(int)+1);

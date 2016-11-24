@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "fonctionsGenotypesHaplotypes.h"
+#include "fonctionsStructuresGenoHaplo.h"
 
 /*
 gcc -c fonctionsGenotypesHaplotypes.c
@@ -48,11 +49,11 @@ int main(int argc, char* argv[]){
   else {
     if(GenotypesAleatoires == NULL){
       // Impossible d'ouvrir le fichier GenotypesAleatoires
-      printf("Impossible d'ouvrir le fichier GenotypesAleatoires.txt\n");
+      printf("Impossible d'ouvrir le fichier 'GenotypesAleatoires.txt'\n");
     }
     else if(GenoHaploAleatoires == NULL){
       // Impossible d'ouvrir le fichier GenotypesAleatoires
-      printf("Impossible d'ouvrir le fichier GenoHaploAleatoires.txt\n");
+      printf("Impossible d'ouvrir le fichier 'GenoHaploAleatoires.txt'\n");
     }
   }
   return 0;
