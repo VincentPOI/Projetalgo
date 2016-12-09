@@ -13,6 +13,7 @@ int main(int argc, char* argv[]){
   char* seq_geno;
   FILE* GenotypesAleatoires = NULL;
   TPtr_geno liste_geno = NULL;
+  TPtr_haplo liste_haplo = NULL;
 
   // Tests pour l'initialisation des variables avec paramètres
   if(argc<2 || argc>4) {
@@ -47,6 +48,7 @@ int main(int argc, char* argv[]){
       nb_lignes++;
     }
     printf("Nombre d'individus présents dans le fichier : %d.\n", nb_lignes);
+    TPtr_geno* tab_adr_geno=malloc(nb_lignes*sizeof(TPtr_geno*));
     printf("Réinitialisation du pointeur en début de fichier...\n");
 
     // Réinitialisation du pointeur au début du fichier
@@ -54,18 +56,23 @@ int main(int argc, char* argv[]){
 
     printf("Pointeur placé en début de fichier.\n");
     printf("Lecture et stockage des génotypes...\n----------------------\n");
-    // On montre les individus ainsi que leurs génotype et la longueur de ceux-ci que l'on récupère pour la suite
+    // On affiche les individus ainsi que leurs génotype et la longueur de ceux-ci que l'on récupère pour la suite
     while(fscanf(GenotypesAleatoires,"%*s %d %*s %s", &num_indiv, seq_geno)==2){
       printf("Individu %d ;", num_indiv);
       printf(" Génotype : %s ;", seq_geno);
       lg_genotypes=strlen(seq_geno);
       printf(" Longueur du génotype : %d\n", lg_genotypes);
-      ajouter_geno(&liste_geno, num_geno, seq_geno);
+      ajouter_geno(&liste_geno, num_geno, seq_geno, lg_genotypes, &liste_haplo);
+      tab_adr_geno[num_indiv]=liste_geno;
       afficher_tete_geno(liste_geno, lg_genotypes);
       num_geno=num_geno+1;
       printf("----------------------\n");
     }
-
+    while(liste_haplo!=NULL){
+      printf("Haplo %d : %s\n", liste_haplo->num_haplo2, liste_haplo->haplo2);
+      printf("Haplo %d : %s\n", liste_haplo->num_haplo1, liste_haplo->haplo1);
+      liste_haplo=liste_haplo->next;
+    }
     //Traduction des génotypes en haplotypes + stockage
 
     //initialisation_freq_haplo(liste_haplo);
